@@ -1,0 +1,4 @@
+flask
+Flask-MySQLdb
+Flask-WTF
+wtforms

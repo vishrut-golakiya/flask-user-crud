@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flask-app-deployment
+spec:
+  replicas: 1  # Number of replicas (pods) for high availability
+  selector:
+    matchLabels:
+      app: flask-app
+  template:
+    metadata:
+      labels:
+        app: flask-app
+    spec:
+      containers:
+      - name: flask-app
+        image: vishrut0/demo-project:latest  # Docker image from Docker Hub
+        ports:
+        - containerPort: 5000
+        env:
+          - name: MYSQL_HOST
+            value: "10.244.3.4"
+          - name: MYSQL_USER
+            value: "root"
+          - name: MYSQL_PASSWORD
+            value: "root"
+          - name: MYSQL_DB
+            value: "userdb"
